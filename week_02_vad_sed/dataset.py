@@ -9,7 +9,7 @@ import torchaudio
 
 
 class Dataset(torch_data.Dataset):
-    def __init__(self, split_part: str, datadir: str, feats: nn.Module):
+    def __init__(self, split_part: str, datadir: str, feats: nn.Module) -> None:
         super().__init__()
         data = pd.read_csv(os.path.join(datadir, f'{split_part}.tsv'), sep='\t')
         labels = {key: idx for idx, key in enumerate(sorted(set(data.label.values)))}
@@ -23,7 +23,7 @@ class Dataset(torch_data.Dataset):
                 self._pathes.append(path)
                 self._labels.append(labels[row.label])
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         try:
             waveform, sample_rate = torchaudio.load(self._pathes[index])
         except Exception as err:
