@@ -12,14 +12,14 @@
     - Lecture: Introduction to speech NN discriminative models. Voice Activity Detection (VAD) and Sound Event Detection (SED) tasks
     - Seminar: Train VAD models
     - Homework (15pt): Train SED models
-- Week 3 [Slides](https://docs.google.com/presentation/d/1IppXDfOI2Du5bMfnjxosAgg6Uu0VjXEVRr_8nkUxAus/edit?usp=sharing):
+- Week 3 [Slides](https://docs.google.com/presentation/d/1IppXDfOI2Du5bMfnjxosAgg6Uu0VjXEVRr_8nkUxAus/edit?usp=sharing) | [Lecture](https://disk.yandex.ru/i/uo6scU9T7R5V9Q) | [Seminar](https://disk.yandex.ru/i/NE6mekhYEQoPGA):
     - Lecture: Keyword Spotting and Speech Biometrics tasks
     - Seminar: Train Biometrics model and look at embeddings
     - Homework (20pt): Train Biometrics model ECAPA-TDNN with contrastive loss
-- Week 4:
+- Week 4 [Slides](https://docs.google.com/presentation/d/1dU9NasfSDCfgldqJzaaEF2xdamejnGUb4tzu4wbTCPU) | Lecture | Seminar:
     - Lecture: Speech Recognition I
     - Seminar: CTC forward-backward, soft alignment
-    - Homework (10pt): CTC/RNNT decoding, RNNT forward-backward
+    - Homework (10pt): CTC/RNN-T decoding, RNN-T forward-backward
 - Week 5:
     - Lecture: Speech Recognition II, Pretraining
     - Homework (5pt): Finetune Wav2Vec2
