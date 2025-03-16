@@ -133,4 +133,6 @@ dmypy.json
 
 *.zip
 *.tar.gz
-./data/*
+week_02_kws_bio/data_sem
+labs/2_SED/dataset/*
+labs/3_Biometrics/voxceleb
