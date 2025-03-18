@@ -136,3 +136,5 @@ dmypy.json
 week_02_kws_bio/data_sem
 labs/2_SED/dataset/*
 labs/3_Biometrics/voxceleb
+week_04_asr/data
+week_04_asr/week_04_data
