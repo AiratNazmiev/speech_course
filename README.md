@@ -20,14 +20,14 @@
     - Lecture: Speech Recognition I
     - Seminar: CTC forward-backward, soft alignment
     - Homework (10pt): CTC/RNN-T decoding, RNN-T forward-backward
-- Week 5:
+- Week 5 [Slides](https://github.com/yandexdataschool/speech_course/blob/main/week_05_pretraining_asr/lecture.pdf) | [Lecture](https://disk.yandex.ru/d/vownNQ4ZuBARPg) | [Seminar](https://disk.yandex.ru/i/7BtUnWcme2ryag):
     - Lecture: Speech Recognition II, Pretraining
     - Homework (5pt): Finetune Wav2Vec2
-- Week 6:
+- Week 6: [Slides](https://docs.google.com/presentation/d/1BjEEduYCH7z0yKIbL3-t3jaEv90c2r_O6aaMWVXhtRg/edit?usp=sharing) | [Lecture](https://disk.yandex.ru/i/smC9fVJmXGWOeA) | [Seminar](https://disk.yandex.ru/i/vMn3gnPuH9j3mA)
     - Lecture: ASR Inference
     - Seminar: Streaming ASR
     - Homework (5pt): Seminar continuation
-- Week 7:
+- Week 7: [Slides](https://docs.google.com/presentation/d/1MAAAc_2vRS2jhxZlqfpx0m7Z3MY9J1jyXgdl7XStFf8/edit?usp=sharing) | [Lecture](https://disk.yandex.ru/d/7w6n6ad8PGxV7w)
     - Lecture: Text-to-Speech I, intro, preprocessor, metrics
 - Week 8:
     - Lecture: Text-to-Speech II, Acoustic models and vocoding
