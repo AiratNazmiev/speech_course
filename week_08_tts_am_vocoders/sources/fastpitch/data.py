@@ -300,7 +300,7 @@ def get_loader(dataset: LocalDataset, hparams, collate_fn, shuffle: bool = False
     return DataLoader(
         dataset,
         batch_size=hparams.batch_size,
-        num_workers=4,
+        num_workers=0,#4,
         shuffle=shuffle,
         collate_fn=collate_fn
     )

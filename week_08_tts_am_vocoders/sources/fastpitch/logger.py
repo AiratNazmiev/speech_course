@@ -55,6 +55,11 @@ class FastpitchLogger:
     def log_audios(self, step, audios_dict: Dict[str, Wav]):
         logger.info(f"Logging {len(audios_dict)} audios")
         for audio_tag, audio in audios_dict.items():
+            
+            if len(audio.data) == 0:
+                logger.warning(f"Skipping logging for {audio_tag}: audio data is empty.")
+                continue
+            
             self.files_logger.add_audio(
                 f'{audio_tag}', audio.data, global_step=step, sample_rate=audio.sr
             )

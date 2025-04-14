@@ -138,3 +138,8 @@ labs/2_SED/dataset/*
 labs/3_Biometrics/voxceleb
 week_04_asr/data
 week_04_asr/week_04_data
+
+week_08_tts_am_vocoders/notebooks/data/*
+week_08_tts_am_vocoders/notebooks/logs/*
+week_08_tts_am_vocoders/notebooks/checkpoints/*
+week_08_tts_am_vocoders/sources/hifigan/hifigan_gen_checkpoint_6500.pt
