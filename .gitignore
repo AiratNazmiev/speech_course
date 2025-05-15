@@ -144,3 +144,5 @@ week_08_tts_am_vocoders/notebooks/logs/*
 week_08_tts_am_vocoders/notebooks/checkpoints/*
 week_08_tts_am_vocoders/sources/hifigan/hifigan_gen_checkpoint_6500.pt
 week_10_tts_transformers/data
+
+week_12_vqe_noise_reduction/homework_1_16kHz/*
