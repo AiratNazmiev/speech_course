@@ -44,12 +44,10 @@ class VectorQuantizer(nn.Module):
         tensor_2: float tensor with shape [sequence_2, embedding]
         output: float tensor with shape [sequence_1, sequence_2]
         """
-        # Your code here
-        raise NotImplementedError("TODO: assignment")
+        diff = tensor_1.unsqueeze(1) - tensor_2.unsqueeze(0)
+        sq_distances = (diff**2).sum(2)
 
-        # ^^^^^^^^^^^^^^
-
-        return distances
+        return sq_distances
 
     def encode(self, embeddings: torch.Tensor):
         """
@@ -60,10 +58,11 @@ class VectorQuantizer(nn.Module):
         assert embeddings.dim() == 4
         B, E, H, W = embeddings.shape
 
-        # Your code here
-        raise NotImplementedError("TODO: assignment")
-
-        # ^^^^^^^^^^^^^^
+        flat_embeddings = embeddings.permute(0, 2, 3, 1).reshape(B * H * W, E)
+        
+        sq_distances = self.calculate_squared_distances(flat_embeddings, self.codebook.weight)  # (B * H * W, n_embs)
+        indices = torch.argmin(sq_distances, dim=1)  # (B * H * W, )
+        indices = indices.reshape(B, H, W)  # (B, H, W)
 
         return indices
 
@@ -74,11 +73,9 @@ class VectorQuantizer(nn.Module):
         For each index: 0 <= index < codebook_size
         output: FloatTensor of codec vectors from codebook of size [batch, embedding, height, width]
         """
-        # Your code here
-        raise NotImplementedError("TODO: assignment")
-
-        # ^^^^^^^^^^^^^^
-
+        decoded = self.codebook(indices)  # (B, H, W, E)
+        decoded = decoded.permute(0, 3, 1, 2)
+        
         return decoded
 
     def forward(self, embeddings: torch.Tensor) -> torch.Tensor:
@@ -109,11 +106,17 @@ class ResidualVectorQuantizer(nn.Module):
         embeddings: Embedded image of size [batch, embedding, height, width]
         output: LongTensor of indices of size [batch, n_codebooks, height, width]
         """
-        # Your code here
-        raise NotImplementedError("TODO: assignment")
-
-        # ^^^^^^^^^^^^^^
-
+        codecs = []
+        cumulative_decodes = 0.
+        
+        for codebook in self.codebooks:
+            residual = embeddings - cumulative_decodes
+            indicies = codebook.encode(residual)
+            cumulative_decodes = cumulative_decodes + codebook.decode(indicies)
+            codecs.append(indicies)
+            
+        codecs = torch.stack(codecs, dim=1)
+        
         return codecs
 
     def decode(self, codecs: torch.Tensor):
@@ -123,10 +126,9 @@ class ResidualVectorQuantizer(nn.Module):
         For each index: 0 <= index < codebook_size
         output: FloatTensor of codec vectors from codebook of size [batch, embedding, height, width]
         """
-        # Your code here
-        raise NotImplementedError("TODO: assignment")
-
-        # ^^^^^^^^^^^^^^
+        quantized = []
+        for idx, codebook in enumerate(self.codebooks):
+            quantized.append(codebook.decode(codecs[:, idx, :, :]))
 
         return sum(quantized)
 
@@ -151,10 +153,9 @@ class VectorQuantizationLoss(nn.Module):
         quantized: the vector of embeddings, processed by VectorQuantisation ot ResidualVectorQuantization
         output: differentiable loss of size [1]
         """
-
-        # Your code here
-        raise NotImplementedError("TODO: assignment")
-
-        # ^^^^^^^^^^^^^^
+        
+        commitment_loss = F.mse_loss(inputs, quantized.detach())
+        latent_loss = F.mse_loss(inputs.detach(), quantized)
+        loss = self.commitment_cost * commitment_loss + latent_loss
 
         return loss

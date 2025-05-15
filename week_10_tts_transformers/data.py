@@ -49,7 +49,7 @@ class Phonemizer:
 
 
 class BioembModel:
-    HUGGING_FACE_TOKEN = "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"
+    HUGGING_FACE_TOKEN = "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"
     SR = 16000
 
     def __init__(self, device):
@@ -109,7 +109,7 @@ class CodecApplier:
             waveform = waveform.numpy(force=True)
 
         waveform = librosa.resample(waveform, orig_sr=sample_rate, target_sr=self.sample_rate)
-        input = torch.tensor([waveform], device=self.device) # .unsqueeze(dim=0)
+        input = torch.tensor(np.array([waveform]), device=self.device) # .unsqueeze(dim=0)
         encoded = self.model.encode(input)
         encoded = encoded.squeeze(dim=0).numpy(force=True)
 
